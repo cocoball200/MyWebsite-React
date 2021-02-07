@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Hero from './components/Hero';
+import Project from './components/Project';
 import Navbar from './components/Navbar';
 import { ProjectData } from './data/ProjectData';
 import GlobalStyle from './golobalStyles';
@@ -10,7 +10,7 @@ class App extends Component {
       <>
         <GlobalStyle />
         <Navbar />
-        <Hero dataList={ProjectData} />
+        <Project dataList={ProjectData} />
       </>
     );
   }

@@ -4,22 +4,14 @@ import { Button } from './Button';
 import { IoMdArrowRoundForward } from 'react-icons/io'
 import { IoArrowForward, IoArrowBack } from 'react-icons/io5'
 
-const HeroSection = styled.section`
+const ProjectSection = styled.section`
   height:100vh;
   max-height:1100px;
   position:relative;
   overflow:hidden;
-  h1 {
-    font-size: clamp(1rem, 8vw, 2rem);
-    font-weight: 400;
-    text-transform: uppercase;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-    text-align: left;
-    margin-bottom: 0;
-  }
 `;
 
-const HeroWrapper = styled.div`
+const ProjectWrapper = styled.div`
   width:100%;
   height:100%;
   display:flex;
@@ -30,12 +22,12 @@ const HeroWrapper = styled.div`
 
 `;
 
-const HeroSlide = styled.div`
+const ProjectSlide = styled.div`
 z-index: 1;
 width:100%;
 height:100%;
 `;
-const HeroSlider = styled.div`
+const ProjectSlider = styled.div`
 position:absolute;
 top:0;
 left:0;
@@ -63,7 +55,7 @@ justify-content:center;
   );
 }
 `;
-const HeroImage = styled.img`
+const ProjectImage = styled.img`
  position:absolute;
  top:0;
  left:0;
@@ -71,7 +63,7 @@ const HeroImage = styled.img`
  height:100vh;
  object-fit:cover;
 `;
-const HeroContent = styled.div`
+const ProjectContent = styled.div`
 position:relative;
 z-index:10;
 display:flex;
@@ -131,39 +123,43 @@ const NextArrow = styled(IoArrowForward)`
   ${arrowButtons}
 `
 
-
-class Hero extends Component {
+class Project extends Component {
+  state = {
+    page: 0
+  }
   render() {
     const { dataList } = this.props;
+    const length = dataList.length;
+    const timeout = React.createRef();
+
     return (
-      <HeroSection>
-        <HeroWrapper>
+      <ProjectSection>
+        <ProjectWrapper>
           {dataList.map((data, index) => {
             return (
-              <HeroSlide>
-                <HeroSlider>
-                  <HeroImage src={data.image} alt={data.alt} />
-                  <HeroContent>
+              <ProjectSlide>
+                <ProjectSlider>
+                  <ProjectImage src={data.image} alt={data.alt} />
+                  <ProjectContent>
                     <h1>{data.title}</h1>
                     <p>{data.tech}</p>
                     <Button to={data.path} primary='true' css={`max-width: 160px;`}>
                       {data.content}
                       <Arrow />
                     </Button>
-                  </HeroContent>
-                </HeroSlider>
-              </HeroSlide>
+                  </ProjectContent>
+                </ProjectSlider>
+              </ProjectSlide>
             )
           })}
           <SliderButtons>
             <PrevArrow />
             <NextArrow />
           </SliderButtons>
-
-        </HeroWrapper>
-      </HeroSection>
+        </ProjectWrapper>
+      </ProjectSection>
     );
   }
 }
 
-export default Hero;
+export default Project;
